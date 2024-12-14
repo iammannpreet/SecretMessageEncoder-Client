@@ -135,13 +135,14 @@ export default function renderPage2(container) {
         }
 
         try {
-            const response = await fetch('http://localhost:3000/generate-secret-message', {
+            const response = await fetch('https://secretmessageencoder-backend.onrender.com/generate-secret-message', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ input: inputText }),
             });
+
 
             terminalBox.textContent = ''; // Clear terminal box
 

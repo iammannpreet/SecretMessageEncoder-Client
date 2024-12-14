@@ -75,8 +75,7 @@ export default function renderPage1(container) {
         }
 
         try {
-            // Try fetching from the database
-            const response = await fetch(`http://localhost:3000/retrieve-coordinates?input=${encodeURIComponent(inputText)}`, {
+            const response = await fetch(`https://secretmessageencoder-backend.onrender.com/retrieve-coordinates?input=${encodeURIComponent(inputText)}`, {
                 method: 'GET',
             });
 

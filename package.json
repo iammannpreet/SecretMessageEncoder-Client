@@ -1,7 +1,17 @@
 {
+  "name": "cordvault",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "gsap": "^3.12.5",
     "locomotive-scroll": "^4.1.4",
     "three": "^0.171.0"
+  },
+  "devDependencies": {
+    "vite": "^4.5.5"
   }
 }

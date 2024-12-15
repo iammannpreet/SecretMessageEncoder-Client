@@ -52,7 +52,6 @@ const material = new THREE.ShaderMaterial({
         gl_Position = vec4(position, 1.0);
       }
     `,
-    //hello
     fragmentShader: `
     uniform sampler2D t1;
     uniform sampler2D t2;

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-
+import { gsap } from 'gsap';
 const w = window.innerWidth;
 const h = window.innerHeight;
 const scene = new THREE.Scene();
@@ -23,6 +23,23 @@ video2.loop = true;
 video2.muted = true;
 video2.autoplay = true;
 video2.play();
+const scrollMessage = document.createElement('div');
+scrollMessage.textContent = 'Scroll to Reveal';
+scrollMessage.style.position = 'absolute';
+scrollMessage.style.top = '50%';
+scrollMessage.style.left = '50%';
+scrollMessage.style.transform = 'translate(-50%, -50%)';
+scrollMessage.style.color = 'white';
+scrollMessage.style.fontFamily = 'Copperplate, serif';
+scrollMessage.style.fontSize = '24px';
+scrollMessage.style.background = 'rgba(0, 0, 0, 0.5)';
+scrollMessage.style.padding = '10px 20px';
+scrollMessage.style.borderRadius = '8px';
+scrollMessage.style.textAlign = 'center';
+scrollMessage.style.zIndex = '1000';
+scrollMessage.style.pointerEvents = 'none';
+
+document.body.appendChild(scrollMessage);
 
 const texture1 = new THREE.VideoTexture(video1);
 const texture2 = new THREE.VideoTexture(video2);
@@ -134,7 +151,17 @@ function normalizeWheel(event) {
     return normalized;
 }
 
+
 function onScroll(event) {
+    // Remove the scroll message
+    if (scrollMessage) {
+        gsap.to(scrollMessage, {
+            opacity: 0,
+            duration: 0.5,
+            onComplete: () => scrollMessage.remove(),
+        });
+    }
+
     const delta = normalizeWheel(event) * 0.08;
     targetProgress = THREE.MathUtils.clamp(targetProgress + delta, 0.0, 1.0);
 
@@ -150,6 +177,7 @@ function onScroll(event) {
     animateProgress();
     delayedRevert();
 }
+
 
 window.addEventListener('wheel', onScroll, { passive: false });
 
